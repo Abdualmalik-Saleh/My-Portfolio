@@ -863,3 +863,287 @@ header .links .logo,
 /* End For Mobile Screens */
 
 /* End All Resposives */
+
+/* The New Features */
+
+/* =========================================
+   1. Light Mode Styling (الوضع الفاتح العصري)
+   ========================================= */
+body.light-mode {
+    /* الخلفية: لون أبيض مائل للرمادي الخفيف جداً (مريح للعين) */
+    --bg-color: #f8f9fa;
+    
+    /* لون الهيدر والكاردات: أبيض نقي لإبرازها عن الخلفية */
+    --black-color: #ffffff; 
+    
+    /* لون النصوص الأساسي: رمادي غامق جداً (وليس أسود) للقراءة المريحة */
+    --white-color: #212529; 
+    
+    /* لون الفقرات: رمادي متوسط */
+    --p-color: #5d666f;
+    
+    /* لون الحدود: شفافية أغمق قليلاً لتظهر في الأبيض */
+    --border-color: rgba(0, 0, 0, 0.1);
+
+    /* الإبقاء على اللون الأخضر المميز كما هو، أو تغميقه قليلاً للتباين */
+    --main-color: #b0d618; 
+}
+
+/* إصلاح مشكلة الهيدر في الوضع الفاتح */
+/* نضيف ظلاً خفيفاً للهيدر في الوضع الفاتح ليفصله عن المحتوى */
+body.light-mode header {
+    background-color: var(--black-color);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+    border-bottom: none; /* إزالة الخط القديم */
+}
+
+/* جعل الكاردات (الخدمات والمشاريع) تبرز بظل خفيف */
+body.light-mode .services .boxes .box,
+body.light-mode .about .container {
+    background-color: var(--black-color);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    border: 1px solid transparent; /* إخفاء الحدود القديمة */
+}
+
+body.light-mode .services .boxes .box:hover {
+    border-color: var(--main-color);
+    transform: translateY(-5px); /* حركة بسيطة للأعلى */
+}
+
+/* تحسين حقول الإدخال في نموذج التواصل للوضع الفاتح */
+body.light-mode .contact form .inpts_form input,
+body.light-mode .contact form .inpts_form textarea {
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    color: #333;
+}
+
+/* =========================================
+   2. Switch Buttons Styling (تنسيق أزرار التبديل الجديدة)
+   ========================================= */
+/* تنسيق الزر ليشبه الأزرار الأخرى */
+#lang-btn, #theme-btn {
+    font-size: 22px;
+    color: var(--white-color);
+    transition: 0.3s;
+    cursor: pointer;
+    display: flex; /* لضمان توسط الأيقونة */
+    align-items: center;
+    justify-content: center;
+}
+
+#lang-btn:hover, #theme-btn:hover {
+    color: var(--main-color);
+    transform: scale(1.2);
+}
+
+/* =========================================
+   3. RTL & Arabic Fixes (تحسينات اللغة العربية)
+   ========================================= */
+
+/* الاتجاه العام والخط */
+html[dir="rtl"] body {
+    direction: rtl;
+    text-align: right;
+    font-family: "Cairo", sans-serif;
+}
+
+html[dir="rtl"] h1, html[dir="rtl"] h2, html[dir="rtl"] h3, 
+html[dir="rtl"] h4, html[dir="rtl"] h5, html[dir="rtl"] p, 
+html[dir="rtl"] a, html[dir="rtl"] li, html[dir="rtl"] button, 
+html[dir="rtl"] input, html[dir="rtl"] textarea {
+    font-family: "Cairo", sans-serif;
+}
+
+/* في الوضع العربي، نلغي الهامش الأيمن ونضيف هامشاً أيسر للأيقونة */
+html[dir="rtl"] .contact .social_contact .links a i {
+    margin-right: 0;     /* إلغاء المسافة الإنجليزية */
+    margin-left: 15px;   /* إضافة مسافة عربية */
+}
+
+/* تأثير الحركة عند التحويم في العربي (يجب أن يتحرك لليسار بدلاً من اليمين) */
+html[dir="rtl"] .contact .social_contact .links a:hover {
+    left: auto;   /* إلغاء الحركة الإنجليزية */
+    right: 15px;  /* حركة جديدة لليمين (بما أن الاتجاه معكوس) */
+}
+
+/* إصلاح اتجاه نصوص المشروع */
+html[dir="rtl"] .projects .project_box .text {
+    margin-left: 0;
+    margin-right: 100px;
+}
+@media (max-width: 1000px) {
+    html[dir="rtl"] .projects .project_box .text {
+        margin-right: 50px;
+    }
+}
+@media (max-width: 500px) {
+    html[dir="rtl"] .projects .project_box .text {
+        margin-right: 0;
+    }
+}
+
+/* عكس اتجاه السهم في زر المشاريع */
+html[dir="rtl"] .projects .project_box .text .link {
+    rotate: -45deg;
+}
+
+/* محاذاة نموذج التواصل */
+html[dir="rtl"] .contact form .inpts_form input,
+html[dir="rtl"] .contact form .inpts_form textarea {
+    text-align: right;
+}
+
+/* إصلاح قائمة "من أنا" */
+html[dir="rtl"] .about .div_text ul li i {
+    margin-left: 10px; /* مسافة بين أيقونة الصح والنص */
+}
+
+/* القائمة الجانبية في الجوال (تخرج من اليمين في الوضع العربي) */
+@media (max-width: 1000px) {
+    html[dir="rtl"] header nav .links {
+        left: auto;
+        right: -400px; /* مخفية في اليمين */
+        border-right: none;
+        border-left: 1px solid var(--border-color);
+    }
+    
+    html[dir="rtl"] header nav .links.active {
+        right: 0; /* تظهر */
+        left: auto;
+    }
+    
+    html[dir="rtl"] .close_menu {
+        right: auto;
+        left: 30px;
+    }
+}
+
+
+
+
+
+
+
+
+
+/* =========================================
+   1. Modern Light Mode Palette (لوحة الألوان العصرية)
+   ========================================= */
+body.light-mode {
+    /* 
+       الخلفية ليست بيضاء تماماً، بل رمادي "ثلجي" فاتح جداً
+       هذا اللون مستخدم في أحدث واجهات المستخدم (SaaS Dashboards)
+       لأنه مريح للعين ويعطي شعوراً بالفخامة والاتساع 
+    */
+    --bg-color: #9daabe;
+
+    /* 
+       لون البطاقات والهيدر سيكون أبيض نقي
+       ليخلق تبايناً جميلاً مع الخلفية الرمادية (Depth Effect)
+    */
+    --black-color: #FFFFFF;
+
+    /* 
+       لون النصوص ليس أسود تماماً (#000) لأنه حاد ومزعج
+       بل استخدمنا درجة "الفحم العميق" لراحة العين والقراءة الممتازة
+    */
+    --white-color: #1A1C20;
+
+    /* لون الفقرات رمادي متوسط متزن */
+    --p-color: #555B66;
+
+    /* لون الحدود ناعم جداً */
+    --border-color: #E0E2E7;
+
+    /* 
+       اللون الأساسي (الليموني) يبقى كما هو ليعطي هوية الموقع
+       لكننا سنقوم بتغميق العناصر التي تحته قليلاً ليبرز أكثر
+    */
+    --main-color: #c9f31d; 
+}
+
+/* =========================================
+   2. Light Mode Components (تنسيق العناصر)
+   ========================================= */
+
+/* جعل الانتقال بين الوضعين ناعماً جداً */
+body, header, .box, .project_box, h1, h2, h3, p, a {
+    transition: background-color 0.4s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.4s ease;
+}
+
+/* تنسيق الهيدر في الوضع الفاتح */
+body.light-mode header {
+    background-color: rgba(255, 255, 255, 0.9); /* شفافية بسيطة */
+    backdrop-filter: blur(10px); /* تأثير الزجاج الضبابي العصري */
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.03); /* ظل ناعم جداً */
+}
+
+/* تنسيق خطوط الخلفية المتحركة لتناسب الوضع الفاتح */
+/* نجعلها رمادية خفيفة جداً بدلاً من الأبيض الشفاف */
+body.light-mode .bg-lines span {
+    background-color: rgba(0, 0, 0, 0.03);
+}
+
+/* تنسيق البطاقات (الخدمات - من أنا) بأسلوب "الرفع" (Elevation) */
+body.light-mode .services .boxes .box,
+body.light-mode .about .container {
+    background-color: var(--black-color);
+    border: 1px solid transparent; /* إلغاء الحدود التقليدية */
+    /* إضافة ظل "ذكي" يعطي تجسيماً للعنصر */
+    box-shadow: 0 10px 40px -10px rgba(0,0,0,0.08); 
+    border-radius: 16px; /* زوايا أكثر انحناءً وحداثة */
+}
+
+/* عند مرور الماوس على الخدمات في الوضع الفاتح */
+body.light-mode .services .boxes .box:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 50px -10px rgba(201, 243, 29, 0.3); /* ظل خفيف بلون الهوية */
+    border: 1px solid var(--main-color);
+}
+
+/* تنسيق حقول الإدخال لتكون عصرية */
+body.light-mode .contact form .inpts_form input,
+body.light-mode .contact form .inpts_form textarea {
+    background-color: #FFFFFF;
+    border: 1px solid #E0E2E7;
+    color: var(--white-color);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.02);
+}
+
+body.light-mode .contact form .inpts_form input:focus,
+body.light-mode .contact form .inpts_form textarea:focus {
+    border-color: var(--main-color);
+    box-shadow: 0 0 0 4px rgba(201, 243, 29, 0.2); /* تأثير توهج عند الكتابة */
+}
+
+/* تعديل لون أزرار التبديل في الهيدر للوضع الفاتح لتكون واضحة */
+body.light-mode #lang-btn, 
+body.light-mode #theme-btn,
+body.light-mode header nav .icons a {
+    color: #1A1C20; /* لون أيقونات داكن */
+}
+
+body.light-mode #lang-btn:hover, 
+body.light-mode #theme-btn:hover,
+body.light-mode header nav .icons a:hover {
+    color: #a4c910; /* درجة أغمق قليلاً من الليموني للتباين على الأبيض */
+}
+
+/* زر التحميل في الهيرو والنبذة */
+body.light-mode .btn_no_bg {
+    color: var(--white-color);
+    font-weight: 600;
+}
+
+/* =========================================
+   3. RTL (Arabic) Fixes (الإصلاحات السابقة للعربية)
+   ========================================= */
+/* أبقِ كود RTL كما هو من الرد السابق، فهو صحيح */
+html[dir="rtl"] body {
+    direction: rtl;
+    text-align: right;
+    font-family: "Cairo", sans-serif;
+}
+/* ... (باقي كود العربية كما أرسلته لك سابقاً) ... */
